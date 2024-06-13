@@ -14,9 +14,9 @@ s3 = session.client('s3')
 
 # Cognito authentication
 user = authenticate(
-    cognito_user_pool_id="YOUR_USER_POOL_ID",
-    cognito_user_pool_client_id="YOUR_APP_CLIENT_ID",
-    cognito_user_pool_domain="YOUR_USER_POOL_DOMAIN",
+    cognito_user_pool_id="us-east-1_8k4Xn6O8h",
+    cognito_user_pool_client_id="7mo5kmp9jb0f9h4o8rvbe3dtdk",
+    cognito_user_pool_domain="3.92.174.125:8501",
 )
 
 if user is None:
@@ -66,7 +66,7 @@ else:
             for i, image_data in enumerate(images):
                 base64_bytes = image_data.encode('ascii')
                 image_bytes = base64.b64decode(base64_bytes)
-                bucket_name = "XXXXXXXXXXXXXXX"
+                bucket_name = "adtech-images-bucket"
                 object_key = f"{prompt.replace(' ', '_')}_{i+1}.png"
                 s3.put_object(Bucket=bucket_name, Key=object_key, Body=image_bytes)
                 st.success(f"Image {i+1} saved to S3 at s3://{bucket_name}/{object_key}")
