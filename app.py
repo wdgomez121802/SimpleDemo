@@ -7,7 +7,8 @@ from io import BytesIO
 from botocore.exceptions import ClientError
 
 # Initialize AWS clients
-session = boto3.Session()
+session = boto3.Session(aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+                        aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'])
 bedrock_client = session.client('bedrock-runtime')
 s3 = session.client('s3')
 
